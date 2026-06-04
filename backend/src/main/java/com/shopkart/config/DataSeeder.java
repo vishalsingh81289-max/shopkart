@@ -2,12 +2,16 @@ package com.shopkart.config;
 
 import com.shopkart.model.Product;
 import com.shopkart.repository.ProductRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DataSeeder implements CommandLineRunner {
+
+    private static final Logger logger = LoggerFactory.getLogger(DataSeeder.class);
 
     @Autowired
     private ProductRepository repo;
@@ -32,6 +36,6 @@ public class DataSeeder implements CommandLineRunner {
         repo.save(new Product("Adidas Shoes",          "Footwear",     "Classic Adidas shoes with iconic design and superior comfort.",                        4299.0,  12, "👟", "New",         4.6, 110));
 
 
-        System.out.println("✅  14 products seeded into the database.");
+        logger.info("✅ {} products seeded into the database.", repo.count());
     }
 }
