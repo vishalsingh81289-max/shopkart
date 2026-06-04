@@ -28,7 +28,10 @@ public class DataSeeder implements CommandLineRunner {
         repo.save(new Product("Air Purifier",          "Home",         "True HEPA air purifier covering up to 400 sq ft with 3-stage filtration.",             3899.0,   6, "💨", "Sale",         4.5, 141));
         repo.save(new Product("Whey Protein",          "Sports",       "2kg whey protein powder, chocolate flavour, 25g protein per serving.",                 1199.0,  25, "💪", null,          4.2, 230));
         repo.save(new Product("Leather Wallet",        "Accessories",  "Slim genuine leather bifold wallet with RFID-blocking inner lining.",                   799.0,  14, "👜", null,          4.6,  67));
+        repo.save(new Product("Puma Shoes",            "Footwear",     "Stylish and comfortable Puma shoes for everyday wear.",                                4599.0,  10, "👟", null,          4.4,  95));
+        repo.save(new Product("Adidas Shoes",          "Footwear",     "Classic Adidas shoes with iconic design and superior comfort.",                        4299.0,  12, "👟", "New",         4.6, 110));
 
-        System.out.println("✅  12 products seeded into the database.");
+
+        System.out.println("✅  14 products seeded into the database.");
     }
 }
