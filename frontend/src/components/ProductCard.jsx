@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
 
@@ -8,10 +8,10 @@ export default function ProductCard({ product }) {
   const navigate = useNavigate()
   const inCart = cart.some(item => item.id === product.id)
 
-  const isLowStock = useMemo(() => product.stock > 0 && product.stock < 5, [product.stock])
+  const isLowStock =  product.stock > 0 && product.stock < 5
   const isOutOfStock = useMemo(() => product.stock === 0, [product.stock])
 
-  const handleAddToCart = useCallback((e) => {
+  const AddToCart = useCallback((e) => {
     e.stopPropagation()
     dispatch({ type: 'ADD', item: product })
     setFlash(true)
@@ -19,18 +19,9 @@ export default function ProductCard({ product }) {
     return () => clearTimeout(timer)
   }, [product, dispatch])
 
-  const renderStarRating = useMemo(() => {
-    const fullStars = Math.floor(product.rating || 4)
-    const emptyStars = 5 - fullStars
-    return '★'.repeat(fullStars) + '☆'.repeat(emptyStars)
-  }, [product.rating])
+  const stars = '★'.repeat(Math.floor(product.rating||4))+ '★'.repeat(5-Math.floor(product.Rating||4))
 
-  const getButtonText = useCallback(() => {
-    if (isOutOfStock) return 'Out of Stock'
-    if (flash) return '✓ Added'
-    if (inCart) return 'Add Again'
-    return 'Add to Cart'
-  }, [isOutOfStock, flash, inCart])
+  const buttonText=isOutOfStock?'Out Of Stock':'flash'?'Added':inCart?'Add Again':'Add to Cart'
 
   const getStockDisplay = useCallback(() => {
     return product.stock === 0 ? 'Out of stock' : `${product.stock} in stock`
