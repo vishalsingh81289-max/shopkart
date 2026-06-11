@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <Link to="/" className="brand">🛍 ShopKart</Link>
-
+    
       <form className="search-form" onSubmit={handleSearch}>
         <input
           className="search-input"

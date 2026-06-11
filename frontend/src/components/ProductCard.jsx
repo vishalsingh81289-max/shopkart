@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
-
+//this is a product card
 export default function ProductCard({ product }) {
   const { dispatch, cart } = useCart()
   const [flash, setFlash] = useState(false)
