@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { CartProvider } from './context/CartContext.jsx'
 import Navbar from './components/Navbar.jsx'
+import BackToTop from './components/BackToTop.jsx'
 import Home from './pages/Home.jsx'
 import ProductDetail from './pages/ProductDetail.jsx'
 import Cart from './pages/Cart.jsx'
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/checkout"      element={<Checkout />} />
           <Route path="/order-success" element={<OrderSuccess />} />
         </Routes>
+        <BackToTop />
       </BrowserRouter>
     </CartProvider>
   )
