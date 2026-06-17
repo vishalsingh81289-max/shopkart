@@ -7,7 +7,7 @@ import ProductDetail from './pages/ProductDetail.jsx'
 import Cart from './pages/Cart.jsx'
 import Checkout from './pages/Checkout.jsx'
 import OrderSuccess from './pages/OrderSuccess.jsx'
-
+//this is an example push 
 export default function App() {
   return (
     <CartProvider>
