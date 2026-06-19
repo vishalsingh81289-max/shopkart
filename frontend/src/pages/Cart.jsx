@@ -32,6 +32,17 @@ export default function Cart() {
                 <p className="card-cat">{item.category}</p>
                 <p className="cart-unit">₹{Number(item.price).toLocaleString('en-IN')} each</p>
               </div>
+              <button
+            className="back-btn full-w"
+            style={{ color: '#c0392b', borderColor: '#c0392b' }}
+            onClick={() => {
+              if (window.confirm('Remove all items from your cart?')) {
+                dispatch({ type: 'CLEAR' })
+              }
+            }}
+          >
+            Clear Cart
+          </button>
               <div className="qty-ctrl">
                 <button className="qty-btn" onClick={() => dispatch({ type: 'DEC', id: item.id })}>−</button>
                 <span className="qty-val">{item.qty}</span>
