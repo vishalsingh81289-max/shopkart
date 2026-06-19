@@ -29,6 +29,12 @@ public class OrderController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    @GetMapping("{orderName}")
+    public ResponseEntity<Order> getByOrderName(@PathVariable String OrderName){
+        return Service.getByOrderName(OrderName)
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
+    }
 
     /** GET /api/orders?email=user@example.com  (or all orders if no param) */
     @GetMapping

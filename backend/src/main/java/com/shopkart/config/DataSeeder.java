@@ -37,5 +37,6 @@ public class DataSeeder implements CommandLineRunner {
 
 
         logger.info("✅ {} products seeded into the database.", repo.count());
+        logger.info("{} some changes",repo.count());
     }
 }
