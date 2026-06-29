@@ -29,6 +29,8 @@ public class OrderController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+
      @GetMapping("/{orderId}")
     public ResponseEntity<Order> getByOrderId(@PathVariable String orderId) {
         return service.getByOrderId(orderId)
@@ -42,6 +44,7 @@ public class OrderController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    
 
     /** GET /api/orders?email=user@example.com  (or all orders if no param) */
     @GetMapping
