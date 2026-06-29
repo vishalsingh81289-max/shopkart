@@ -32,14 +32,14 @@ public class OrderController {
 
 
      @GetMapping("/{orderId}")
-    public ResponseEntity<Order> getByOrderId(@PathVariable String orderId) {
-        return service.getByOrderId(orderId)
+    public ResponseEntity<Order> getByOrderId(@PathVariable String ) {
+        return service.getByOrderId()
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
      @GetMapping("/{orderId}")
-    public ResponseEntity<Order> getByOrderId(@PathVariable String orderId) {
+    public ResponseEntity<Order> getByOrderId(@PathVariable ) {
         return service.getByOrderId(orderId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
