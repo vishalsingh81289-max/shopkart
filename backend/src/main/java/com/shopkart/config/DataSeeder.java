@@ -8,15 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class DataSeeder implements CommandLineRunner {
 
     private static final Logger logger = LoggerFactory.getLogger(DataSeeder.class);
-
-    // Products with stock at or below this level are flagged for restocking.
-    private static final int LOW_STOCK_THRESHOLD = 5;
 
     @Autowired
     private ProductRepository repo;
@@ -42,18 +37,5 @@ public class DataSeeder implements CommandLineRunner {
 
 
         logger.info("✅ {} products seeded into the database.", repo.count());
-
-        // Low-stock report: warn about products that need restocking soon.
-        List<String> lowStock = repo.findAll().stream()
-                .filter(p -> p.getStock() <= LOW_STOCK_THRESHOLD)
-                .map(p -> p.getName() + " (" + p.getStock() + " left)")
-                .toList();
-
-        if (lowStock.isEmpty()) {
-            logger.info("📦 All products are well stocked.");
-        } else {
-            logger.warn("⚠️ {} product(s) low on stock (≤ {} units): {}",
-                    lowStock.size(), LOW_STOCK_THRESHOLD, lowStock);
-        }
     }
 }
