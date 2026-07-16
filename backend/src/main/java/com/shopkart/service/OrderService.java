@@ -38,6 +38,7 @@ public class OrderService {
                 // Reduce stock (best-effort; doesn't rollback if product not found)
                 productService.reduceStock(item.getProductId(), item.getQuantity());
             }
+    
         }
         order.setTotalAmount(total);
 

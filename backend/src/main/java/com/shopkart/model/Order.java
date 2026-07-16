@@ -12,7 +12,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     private String orderId;          // e.g. ORD-A1B2C3D4
     private String customerName;
     private String customerEmail;

@@ -23,12 +23,13 @@ public class OrderController {
     }
 
     /** GET /api/orders/{orderId} */
-    @GetMapping("/{orderId}")
-    public ResponseEntity<Order> getByOrderId(@PathVariable String orderId) {
+    @GetMapping("/{order}")
+    public ResponseEntity<Order> getByOrderId(@PathVariable String order) {
         return service.getByOrderId(orderId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
 
     /** GET /api/orders?email=user@example.com  (or all orders if no param) */
     @GetMapping
