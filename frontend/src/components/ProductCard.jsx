@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
 //this is a product card
@@ -11,7 +11,7 @@ export default function ProductCard({ product }) {
   const isLowStock =  product.stock > 0 && product.stock < 5
   const isOutOfStock = useMemo(() => product.stock === 0, [product.stock])
 
-  const AddToCart = useCallback((e) => {
+  const handleAddToCart = useCallback((e) => {
     e.stopPropagation()
     dispatch({ type: 'ADD', item: product })
     setFlash(true)
@@ -19,9 +19,10 @@ export default function ProductCard({ product }) {
     return () => clearTimeout(timer)
   }, [product, dispatch])
 
-  const stars = '★'.repeat(Math.floor(product.rating||4))+ '★'.repeat(5-Math.floor(product.Rating||4))
+  const rating = Math.floor(product.rating || 4)
+  const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating)
 
-  const buttonText=isOutOfStock?'Out Of Stock':'flash'?'Added':inCart?'Add Again':'Add to Cart'
+  const buttonText = isOutOfStock ? 'Out Of Stock' : flash ? 'Added' : inCart ? 'Add Again' : 'Add to Cart'
 
   const getStockDisplay = useCallback(() => {
     return product.stock === 0 ? 'Out of stock' : `${product.stock} in stock`
@@ -35,7 +36,7 @@ export default function ProductCard({ product }) {
         <p className="card-cat">{product.category}</p>
         <h3 className="card-name">{product.name}</h3>
         <div className="card-stars">
-          <span className="stars">{renderStarRating}</span>
+          <span className="stars">{stars}</span>
           <span className="review-count">({product.reviewCount || 0})</span>
         </div>
         <div className="card-footer">
@@ -45,7 +46,7 @@ export default function ProductCard({ product }) {
             onClick={handleAddToCart}
             disabled={isOutOfStock}
           >
-            {getButtonText()}
+            {buttonText}
           </button>
         </div>
         <p className={`card-stock ${isLowStock ? 'low-stock' : ''}`}>

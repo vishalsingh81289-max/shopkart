@@ -23,24 +23,19 @@ public class OrderController {
     }
 
     /** GET /api/orders/{orderId} */
-    @GetMapping("/{order}")
-    public ResponseEntity<Order> getByOrderId(@PathVariable String order) {
+    @GetMapping("/{orderId}")
+    public ResponseEntity<Order> getByOrderId(@PathVariable String orderId) {
         return service.getByOrderId(orderId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
+   
 
     /** GET /api/orders?email=user@example.com  (or all orders if no param) */
     @GetMapping
     public List<Order> getOrders(@RequestParam(required = false) String email) {
         return (email != null) ? service.getByEmail(email) : service.getAll();
-    }
-
-    /** GET /api/orders/count  — total number of orders */
-    @GetMapping("/count")
-    public ResponseEntity<Map<String, Integer>> count() {
-        return ResponseEntity.ok(Map.of("count", service.getAll().size()));
     }
 
     /** PATCH /api/orders/{orderId}/status  body: { "status": "SHIPPED" } */
